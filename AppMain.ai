@@ -1,0 +1,75 @@
+Import
+{
+  "Strings.ad",
+  "System.ad",
+  "Math.ad",
+  "AppMain.ad"
+}
+
+/*****************************************************************
+* Das folgende Programm wurde zu fast 100% von ChatGPT erstellt.
+* Es mussten lediglich float/double typen angepasst werden.
+*
+*****************************************************************/
+
+int Main::main()
+{ 
+    var PrintfClass pfc;
+
+    // -------------------------------
+    // Konstanten
+    // -------------------------------
+    var Math m;
+    var double G = 6.67430e-11f;    // Gravitationskonstante
+    var double dt = 60.0f;           // Zeitschritt in Sekunden
+    var int steps = 525600;          // Anzahl Zeitschritte
+
+    // -------------------------------
+    // Planetendaten
+    // -------------------------------
+    var double x = 1.5e11f;          // Anfangsposition x (m)
+    var double y = 0.0f;             // Anfangsposition y (m)
+    var double vx = 0.0f;            // Anfangsgeschwindigkeit vx (m/s)
+    var double vy = 30000.0f;        // Anfangsgeschwindigkeit vy (m/s)
+    var double massPlanet = 5.972e24f;  // Masse Erde (kg)
+    var double massSun = 1.989e30f;     // Masse Sonne (kg)
+
+    // -------------------------------
+    // Simulationsschleife
+    // -------------------------------
+    for(var int i = 0; i < steps; i++)
+    {
+        // Abstand Erde-Sonne
+        var double r = cast(float,m.wurzel(x*x + y*y));
+
+        //pfc.fstr("r=$").sa(r).pr();
+
+        // Gravitationskraft
+        var double F = G * massPlanet * massSun / (r*r);
+        //pfc.fstr("F=$ mass*mass=$").sa(F).sa(massPlanet * massSun).pr();
+
+        // Beschleunigung
+        var double ax = -1.0f * F * x / (r * massPlanet);
+        //pfc.fstr("ax=$").sa(ax).pr();
+
+
+        var double ay = -1.0f * F * y / (r * massPlanet);
+        //pfc.fstr("ay=$").sa(ay).pr();
+
+        // Geschwindigkeit aktualisieren
+        vx = vx + ax * dt;
+        vy = vy + ay * dt;
+
+        // Position aktualisieren
+        x = x + vx * dt;
+        y = y + vy * dt;
+
+        // Ausgabe der Position
+        var double Tage = (i * dt)/(24.0 * 60 * 60);
+        pfc.fstr("Step $: Tage: $ x=$, y=$").sa(i).sa(Tage).sa(x).sa(y).pr();
+    }
+    return 1;
+}
+
+
+
