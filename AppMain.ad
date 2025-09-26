@@ -3,4 +3,34 @@ class Main
 methods:
    int main();
 
+   void simulateFullSystem();
+
 };
+
+
+// PlanetOrSun.ad
+class PlanetOrSun
+{
+    String_16 name;
+    // Position in Metern
+    double x;
+    double y;
+    double z;
+    // Geschwindigkeit in m/s
+    double vx;
+    double vy;
+    double vz;
+    // Masse in kg
+    double mass;
+    // Radius in km (optional)
+    double radius;
+
+    double G;
+
+    methods:
+        void init(String_16 pName, double pMass, double pRadius, double pX, double pY, double pZ, double pVx, double pVy, double pVz);
+        void updatePosition(double dt);
+        void updateVelocity(*PlanetOrSun bodies[], int numBodies, double dt);
+        void printInfo();
+};
+

@@ -16,7 +16,7 @@
 compile()
 {
     echo $1
-    ${SPR_VERZ}/compiler/SPRcomp $1 -outputPath output -operatingSystem Linux -sappeurDirectory ${SPR_VERZ} 
+    ${SPR_VERZ}/sc_win.exe $1 -outputPath output -operatingSystem Linux -sappeurDirectory ${SPR_VERZ} 
 }
 
 ########################################################
@@ -24,7 +24,7 @@ compile()
 ########################################################
 compileBG()
 {
-    ${SPR_VERZ}/compiler/SPRcomp $1 -outputPath output -operatingSystem Linux -sappeurDirectory ${SPR_VERZ} &
+    ${SPR_VERZ}/sc_win.exe $1 -outputPath output -operatingSystem Linux -sappeurDirectory ${SPR_VERZ} &
 }
 
 ######################################################
